@@ -7,18 +7,25 @@ public class Email {
 	private String lastName;
 	private String password;
 	private int defualtPasswordLength =10;
+	private String email;
 	private String department;
-	private int mailCapacity;
+	private int mailCapacity = 250;
 	private String alternateEmail;
+	private String companySuffix = "outlook.com";
 	
 	//constructor
 	public Email(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		System.out.println( "Email Created: "+ this.firstName+ " "+ this.lastName);
+		
+		//department
 		this.department = setDepartment();
-		System.out.println("Your Department is : "+this.department);
+		
+		//password
 		this.password = randomPassword(defaultPasswordLength);
+		System.out.println("your password is : "+this.password);
+		//email
+		email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
 		
 	}
 	
@@ -45,6 +52,41 @@ public class Email {
 			return new String(password);
 			
 			
+		}
+		
+		//set mail box capacity
+		public void setMailboxCapacity(int capacity) {
+			this.mailCapacity = capacity;
+		}
+		
+		//alternate email
+		
+		public void setAlternateEmail(String alternateEmail) {
+			this.alternateEmail = alternateEmail;
+		}
+		
+		//change password 
+		public void changePassword(String password) {
+			this.password = password;
+		}
+		
+		public int getMailboxCapacity() {
+			return mailCapacity;
+		}
+		
+		public String getAlternateEmail() {
+			return alternateEmail;
+		}
+		
+		public String getPassword() {
+			return password;
+		}
+		
+		
+		public String showInfo() {
+			return "DISPLAY NAME : " + firstName + " " + lastName +
+					"\nCOMPANY EMAIL : " + email + 
+					"\nMAIL CAPACITY : "+ mailCapacity + "mb";
 		}
 	
 
